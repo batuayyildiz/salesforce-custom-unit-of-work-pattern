@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : batuayyildiz@gmail.com
  * @group             : 
- * @last modified on  : 11-26-2025
+ * @last modified on  : 11-27-2025
  * @last modified by  : batuhan.ayyildiz@cci.com.tr
 **/
 public with sharing class CustomUnitOfWork {
@@ -54,6 +54,7 @@ public with sharing class CustomUnitOfWork {
 
         try {
             doInsert();
+            doUpdate();
         } 
         catch (Exception e) {
             // Probably there should be a logging but keep it simple
@@ -66,6 +67,12 @@ public with sharing class CustomUnitOfWork {
     private void doInsert(){
         for(SObjectType type : types){
             insert newListByType.get(String.valueOf(type));
+        }
+    }
+
+    private void doUpdate(){
+        for(SObjectType type : types){
+            update changedListByType.get(String.valueOf(type));
         }
     }
 

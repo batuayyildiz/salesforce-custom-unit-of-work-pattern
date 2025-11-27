@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : batuayyildiz@gmail.com
  * @group             : 
- * @last modified on  : 11-26-2025
+ * @last modified on  : 11-27-2025
  * @last modified by  : batuhan.ayyildiz@cci.com.tr
 **/
 @isTest
@@ -26,5 +26,23 @@ public with sharing class CustomUnitOfWork_Test {
                                    LIMIT 1];
 
         Assert.areEqual('Test', testContact.FirstName, 'It should commit the contact record');
+    }
+
+    @isTest
+    static void it_should_update_existing_records(){
+        // Given
+        Account acc = new Account(Name = 'Test Account');
+        insert acc;
+        List<SObjectType> types = new List<SObjectType>{Account.SObjectType, Contact.SObjectType};
+        CustomUnitOfWork uow = new CustomUnitOfWork(types);
+        acc.Name = 'Changed Account Name';
+        uow.registerChange(acc);
+        // When
+        Test.startTest();
+            uow.commitWork();
+        Test.stopTest();
+        // Then
+        Account updatedAccount = [SELECT Name FROM Account LIMIT 1];
+        Assert.areEqual('Changed Account Name', updatedAccount.Name, 'It should update the account record');
     }
 }
