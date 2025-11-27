@@ -3,7 +3,7 @@
  * @author            : batuayyildiz@gmail.com
  * @group             : 
  * @last modified on  : 11-27-2025
- * @last modified by  : batuhan.ayyildiz@cci.com.tr
+ * @last modified by  : batuayyildiz@gmail.com
 **/
 public with sharing class CustomUnitOfWork {
     
