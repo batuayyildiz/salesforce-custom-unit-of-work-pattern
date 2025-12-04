@@ -51,7 +51,7 @@ target/
 /.illuminatedCloud/
 **/tsconfig*.json
 **/*.tsbuildinfo
-.idea/*
+/.idea/*
 *.iml
 
 **/graphql.config.yml
