@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a43b2e0-d9ca-4e99-81ca-92a2a533b12e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.forceignore" beforeDir="false" afterPath="$PROJECT_DIR$/.forceignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/force-app/main/default/classes/CustomUnitOfWork.cls" beforeDir="false" afterPath="$PROJECT_DIR$/force-app/main/default/classes/CustomUnitOfWork.cls" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +30,20 @@
     </option>
     <option name="projectWorkspaceSettings">
       <ProjectWorkspaceSettings>
+        <option name="anonymousApexSettings">
+          <AnonymousApexSettings>
+            <option name="savedDocuments">
+              <list>
+                <AnonymousApexSavedDocument>
+                  <option name="apexLogLevel" value="FINEST" />
+                  <option name="body" value="" />
+                  <option name="name" value="Anonymous Apex 1" />
+                  <option name="visualforceLogLevel" value="FINER" />
+                </AnonymousApexSavedDocument>
+              </list>
+            </option>
+          </AnonymousApexSettings>
+        </option>
         <option name="soqlQuerySettings">
           <SoqlQuerySettings>
             <option name="savedDocuments">
@@ -39,6 +53,7 @@
                 </SoqlQuerySavedDocument>
               </list>
             </option>
+            <option name="selectedSavedDocumentIndex" value="0" />
           </SoqlQuerySettings>
         </option>
       </ProjectWorkspaceSettings>
@@ -60,7 +75,8 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/batuayyildiz/Desktop/SalesforceRepo/CustomUnitOfWork/customUnitOfWork"
+    "last_opened_file_path": "/Users/batuayyildiz/Desktop/SalesforceRepo/CustomUnitOfWork/customUnitOfWork",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

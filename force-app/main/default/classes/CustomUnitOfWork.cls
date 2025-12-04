@@ -39,13 +39,24 @@ public with sharing class CustomUnitOfWork {
     public void registerNew(SObject sObj){
         String sObjType = sObj.getSObjectType().getDescribe().getName();
         // Add the coming sobj record to the newListByType map
-        newListByType.get(sObjType).add(sObj);
+        if(newListByType.get(sObjType) != null){
+            newListByType.get(sObjType).add(sObj);
+        }
     }
 
     public void registerChange(SObject sObj){
         String sObjType = sObj.getSObjectType().getDescribe().getName();
         // Add the coming sobj record to the changedListByType map
-        changedListByType.get(sObjType).add(sObj);
+        if(changedListByType.get(sObjType) != null){
+            changedListByType.get(sObjType).add(sObj);
+        }
+    }
+
+    public void registerRelationship(SObject record, Schema.SObjectField relationshipField, SObject relatedTo){
+        String sObjType = record.getSObjectType().getDescribe().getName();
+        if(relationshipsByType.get(sObjType) != null){
+            relationshipsByType.get(sObjType).add(record, relationshipField, relatedTo);
+        }
     }
 
     public void commitWork(){
@@ -66,6 +77,7 @@ public with sharing class CustomUnitOfWork {
 
     private void doInsert(){
         for(SObjectType type : types){
+            this.relationshipsByType.get(String.valueOf(type)).resolve();
             insert newListByType.get(String.valueOf(type));
         }
     }
@@ -77,9 +89,41 @@ public with sharing class CustomUnitOfWork {
     }
 
 
-    private class Relationship{}
+    private class Relationship{
+        SObject record;
+        Schema.SObjectField relationshipField;
+        SObject relatedTo;
 
-    private class Relationships{}
+        public Relationship(SObject record, Schema.SObjectField relationshipField, SObject relatedTo){
+            this.record = record;
+            this.relationshipField = relationshipField;
+            this.relatedTo = relatedTo;
+        }
+
+        // This is where the magic happens - relationship is set between the coming to objects
+        public void resolve(){
+            this.record.put(this.relationshipField, this.relatedTo.Id);
+        }
+
+    }
+
+    private class Relationships{
+        List<Relationship> relationshipList;
+
+        public Relationships(){
+            this.relationshipList = new List<Relationship>();
+        }
+
+        public void add(SObject record, Schema.SObjectField relationshipField, SObject relatedTo){
+            this.relationshipList.add(new Relationship(record, relationshipField, relatedTo));
+        }
+
+        public void resolve(){
+            for (Relationship relationship : relationshipList) {
+                relationship.resolve();
+            }
+        }
+    }
 
 
 }
